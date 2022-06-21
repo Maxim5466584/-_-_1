@@ -1,0 +1,158 @@
+using System;
+
+namespace Laba3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            do
+            {
+                Console.WriteLine("Choose the task 1/2/3");
+                string selection = Console.ReadLine();
+                switch (selection)
+                {
+                    case "1":
+                        task1();
+                        break;
+                    case "2":
+                        task2();
+                        break;
+                    case "3":
+                        task3();
+                        break;
+
+                    default:
+                        Console.WriteLine("U entered invalid data.");
+                        break;
+
+                }
+
+            } while (Console.ReadKey().Key != ConsoleKey.Escape);
+
+            static void task1()
+            {
+                //y = |x - 5| + x^2
+                double x, y, a;
+                bool isNumber;
+                try
+                {
+                    do
+                    {
+                        Console.Write("x=");
+                        isNumber = double.TryParse(Console.ReadLine(), out x);
+                    } while (isNumber == false);
+                    if ((x - 3) == 0)
+                    {
+                        throw new Exception("Ділення на ноль!");
+                    }
+                    else if ((25 - Math.Pow(x, 2)) < 0)
+                    {
+                        throw new Exception("Випаз під корнем меньше нуля");
+                    }
+                    else
+                    {
+                        do
+                        {
+                            Console.Write("a=");
+                            isNumber = double.TryParse(Console.ReadLine(), out a);
+                        } while (isNumber == false);
+
+                        y = Math.Sqrt((25 - Math.Pow(x, 2))) + (2 * a) / (x - 3);
+                    }
+                    Console.WriteLine("y=" + y);
+
+                }
+                catch
+                {
+                    throw;
+                }
+                finally
+                {
+                    Console.WriteLine("Кінець");
+                }
+
+
+            }
+
+            static void task2()
+            {
+
+                //Відомо, що x кг цукерок коштують a гривень.Визначте, скільки коштує y кг цих цукерок, а також скільки кг цукерок можна купити на k гривень. Всі значення вводить користувач.
+
+                double x, a, y, k;
+                bool isNumber;
+
+
+                do
+                {
+                    Console.Write("Введіть вагу цекурок (кг):");
+                    isNumber = double.TryParse(Console.ReadLine(), out x);
+
+                } while (isNumber == false);
+                do
+                {
+                    Console.Write("Введіть ціну за вагу:");
+                    isNumber = double.TryParse(Console.ReadLine(), out a);
+                } while (isNumber == false);
+                do
+                {
+                    Console.Write("Введіть потрібну кількість цукерок :");
+                    isNumber = double.TryParse(Console.ReadLine(), out y);
+                } while (isNumber == false);
+                Console.Write(y + " кг цукерок коштує " + (a * y / x) + " грн\n");
+                do
+                {
+                    Console.Write("Введите нужную сумму:");
+                    isNumber = double.TryParse(Console.ReadLine(), out k);
+                } while (isNumber == false);
+                Console.Write("За " + k + " грн можно купить " + (k * x / a) + " кг конфет");
+
+            }
+
+
+
+            static void task3()
+            {
+                double y = 0, x = 0, a = 0;
+                bool isNumber;
+                //y = sqrt (25 + x^2) + 2a : x - 3;
+                try
+                {
+                    Console.WriteLine("Task 3");
+                    Console.WriteLine("y =  sqrt (25 + x^2) + 2a : x - 3; ");
+                    Console.WriteLine("Type x, and then press Enter");
+                     x = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Type a, and then press Enter");
+                     a = Convert.ToDouble(Console.ReadLine());
+                     y = Convert.ToDouble(Math.Sqrt(25 + Math.Pow(x, 2)) + (2 * a / (x - 3)));
+                     Console.WriteLine("y = " + y);
+                    if (x == 3)
+                    {
+                        throw new Exception();
+                    }
+
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Значення y не досліджене оскільки замість цифр для значень x або y були введені символи  ");
+                }
+                catch (DivideByZeroException)
+                {
+                    Console.WriteLine("Спроба ділити на нуль  ");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Возникло исключение IndexOutOfRangeException");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Спроба ділити на нуль");
+                }
+                Console.Read();
+            }
+        }
+    }
+}
+
